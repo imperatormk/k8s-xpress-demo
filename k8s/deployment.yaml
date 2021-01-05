@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-xpress-demo
+  labels:
+    app: k8s-xpress-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-xpress-demo
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: k8s-xpress-demo
+    spec:
+      containers:
+      - name: k8s-xpress-demo
+        image: imperatormk/k8s-xpress-demo
+        ports:
+        - containerPort: 3000
+      restartPolicy: Always
